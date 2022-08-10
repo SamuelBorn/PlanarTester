@@ -5,14 +5,12 @@ import java.awt.*;
 public class Node {
     private int x;
     private int y;
-    private int r;
-    private String name;
+    private int r = 20;
+    private String name = "";
 
     public Node(int x, int y) {
         this.x = x;
         this.y = y;
-        this.r = 20;
-        this.name = "1";
     }
 
     public void draw(Graphics g) {

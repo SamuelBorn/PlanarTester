@@ -5,12 +5,11 @@ import java.awt.*;
 public class Edge {
     private Node nodeA;
     private Node nodeB;
-    private Color color;
+    private Color color = Color.BLACK;
 
     public Edge(Node nodeA, Node nodeB) {
         this.nodeA = nodeA;
         this.nodeB = nodeB;
-        this.color = Color.BLACK;
     }
 
     public Node getNodeA() {
