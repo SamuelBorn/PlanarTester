@@ -152,4 +152,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
     public void keyReleased(KeyEvent e) {
 
     }
+
+    public void setGraph(Graph graph){
+        this.graph = graph;
+    }
 }

@@ -5,7 +5,9 @@ import GraphComponents.Graph;
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
-    GraphPanel graphPanel = new GraphPanel(new Graph());
+    private GraphPanel graphPanel = new GraphPanel(new Graph());
+    private GraphMenuBar graphMenuBar = new GraphMenuBar(graphPanel);
+
 
     public static void main(String[] args) {
         new MainFrame();
@@ -17,16 +19,10 @@ public class MainFrame extends JFrame {
         setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setContentPane(graphPanel);
 
-        //addActionListeners();
-        //createMenuBar();
+        setContentPane(graphPanel);
+        setJMenuBar(graphMenuBar);
 
         setVisible(true);
-
-        //showInstruction();
-
-        //graphPanel.deserializeGraph(AUTOSAVE_FILE);
-
     }
 }
