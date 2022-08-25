@@ -63,7 +63,9 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
             } else if (nodeUnderCursor != null && edgeNodeA == null) {
                 edgeNodeA = nodeUnderCursor;
             } else if (nodeUnderCursor != null && edgeNodeA != null && edgeNodeA != nodeUnderCursor) {
-                graph.addEdge(new Edge(nodeUnderCursor, edgeNodeA));
+                if (!graph.isEdge(nodeUnderCursor, edgeNodeA)) {
+                    graph.addEdge(new Edge(nodeUnderCursor, edgeNodeA));
+                }
                 edgeNodeA = null;
             }
         }
