@@ -18,6 +18,7 @@ public class Tree {
         nodes.add(n);
     }
 
+
     @Override
     public String toString() {
         String ret = "Tree: \n";

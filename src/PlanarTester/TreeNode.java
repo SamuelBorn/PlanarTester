@@ -9,7 +9,7 @@ public class TreeNode {
 
     public boolean isConnectedTo(TreeNode node) {
         for (Edge edge : connectedTo) {
-            if (edge.nodeB.equals(node)) {
+            if (edge.getNodeB().equals(node)) {
                 return true;
             }
         }
@@ -17,19 +17,19 @@ public class TreeNode {
     }
 
     public void addTreeEdge(TreeNode nodeB) {
-        connectedTo.add(new Edge(nodeB, true));
+        connectedTo.add(new Edge(this, nodeB, true));
     }
 
     public void addNonTreeEdge(TreeNode nodeB) {
-        connectedTo.add(new Edge(nodeB, false));
+        connectedTo.add(new Edge(this, nodeB, false));
     }
 
     public List<TreeNode> getTreeEdgeNodes() {
-        return connectedTo.parallelStream().filter(edge -> edge.isTreeEdge).map(edge -> edge.nodeB).toList();
+        return connectedTo.parallelStream().filter(edge -> edge.isTreeEdge()).map(edge -> edge.getNodeB()).toList();
     }
 
     public List<TreeNode> getNonTreeEdgeNodes() {
-        return connectedTo.parallelStream().filter(edge -> !edge.isTreeEdge).map(edge -> edge.nodeB).toList();
+        return connectedTo.parallelStream().filter(edge -> !edge.isTreeEdge()).map(edge -> edge.getNodeB()).toList();
     }
 
     public int getDFSNumber() {
@@ -44,24 +44,5 @@ public class TreeNode {
     public String toString() {
         return "#" + DFSNumber + ", con=" + connectedTo + "";
     }
-
-    public class Edge {
-        public TreeNode nodeB;
-        public boolean isTreeEdge;
-
-        public Edge(TreeNode nodeB, boolean isTreeEdge) {
-            this.nodeB = nodeB;
-            this.isTreeEdge = isTreeEdge;
-        }
-
-        @Override
-        public String toString() {
-            if (isTreeEdge) {
-                return "t:" + nodeB.DFSNumber;
-            }
-            return "ø:" + nodeB.DFSNumber;
-        }
-    }
-
 }
 
