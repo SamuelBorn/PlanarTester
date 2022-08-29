@@ -56,7 +56,8 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
 
         }
         if (e.getSource().equals(loadExample1)){
-
+            panel.setGraph(ExampleGraphCreator.getExampleGraph1());
+            panel.repaint();
         }
         if (e.getSource().equals(testPlanarConfirm)){
 
