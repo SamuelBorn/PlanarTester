@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tree {
-    public ArrayList<TreeNode> nodes = new ArrayList<>();
+    private ArrayList<TreeNode> nodes = new ArrayList<>();
+
+    public ArrayList<TreeNode> getNodes() {
+        return nodes;
+    }
 
     public TreeNode getRoot() {
         return nodes.get(0);

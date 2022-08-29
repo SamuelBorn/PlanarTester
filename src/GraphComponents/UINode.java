@@ -2,13 +2,13 @@ package GraphComponents;
 
 import java.awt.*;
 
-public class Node {
+public class UINode {
     private int x;
     private int y;
     private int r = 20;
     private String name = "";
 
-    public Node(int x, int y) {
+    public UINode(int x, int y) {
         this.x = x;
         this.y = y;
     }

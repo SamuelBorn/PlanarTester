@@ -24,6 +24,14 @@ public class TreeNode {
         connectedTo.add(new Edge(nodeB, false));
     }
 
+    public List<TreeNode> getTreeEdgeNodes() {
+        return connectedTo.parallelStream().filter(edge -> edge.isTreeEdge).map(edge -> edge.nodeB).toList();
+    }
+
+    public List<TreeNode> getNonTreeEdgeNodes() {
+        return connectedTo.parallelStream().filter(edge -> !edge.isTreeEdge).map(edge -> edge.nodeB).toList();
+    }
+
     public int getDFSNumber() {
         return DFSNumber;
     }

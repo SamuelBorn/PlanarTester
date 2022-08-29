@@ -1,8 +1,8 @@
 package UserInterface;
 
 import GraphComponents.Graph;
-import GraphComponents.Node;
-import GraphComponents.Edge;
+import GraphComponents.UINode;
+import GraphComponents.UIEdge;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,9 +14,9 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
     private boolean mouseRightButton = false;
     private int mouseX;
     private int mouseY;
-    private Node nodeUnderCursor;
-    private Edge edgeUnderCursor;
-    private Node edgeNodeA;
+    private UINode UINodeUnderCursor;
+    private UIEdge edgeUnderCursor;
+    private UINode edgeUINodeA;
 
     public GraphPanel(Graph graph) {
         this.graph = graph;
@@ -57,16 +57,16 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
     public void mouseReleased(MouseEvent e) {
         if (e.getButton() == MouseEvent.BUTTON1) {
             mouseLeftButton = false;
-            if (nodeUnderCursor == null && edgeUnderCursor == null) {
-                graph.addNode(new Node(e.getX(), e.getY()));
-                edgeNodeA = null;
-            } else if (nodeUnderCursor != null && edgeNodeA == null) {
-                edgeNodeA = nodeUnderCursor;
-            } else if (nodeUnderCursor != null && edgeNodeA != null && edgeNodeA != nodeUnderCursor) {
-                if (!graph.isEdge(nodeUnderCursor, edgeNodeA)) {
-                    graph.addEdge(new Edge(nodeUnderCursor, edgeNodeA));
+            if (UINodeUnderCursor == null && edgeUnderCursor == null) {
+                graph.addNode(new UINode(e.getX(), e.getY()));
+                edgeUINodeA = null;
+            } else if (UINodeUnderCursor != null && edgeUINodeA == null) {
+                edgeUINodeA = UINodeUnderCursor;
+            } else if (UINodeUnderCursor != null && edgeUINodeA != null && edgeUINodeA != UINodeUnderCursor) {
+                if (!graph.isEdge(UINodeUnderCursor, edgeUINodeA)) {
+                    graph.addEdge(new UIEdge(UINodeUnderCursor, edgeUINodeA));
                 }
-                edgeNodeA = null;
+                edgeUINodeA = null;
             }
         }
         if (e.getButton() == MouseEvent.BUTTON3) {
@@ -82,8 +82,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
         int dx = mx - mouseX;
         int dy = my - mouseY;
 
-        if (nodeUnderCursor != null) {
-            nodeUnderCursor.move(dx, dy);
+        if (UINodeUnderCursor != null) {
+            UINodeUnderCursor.move(dx, dy);
         } else {
             graph.moveGraph(dx, dy);
         }
@@ -97,7 +97,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
         int mouseCursor;
         if (mouseRightButton) {
             mouseCursor = Cursor.MOVE_CURSOR;
-        } else if (edgeNodeA != null) {
+        } else if (edgeUINodeA != null) {
             mouseCursor = Cursor.WAIT_CURSOR;
         } else {
             mouseCursor = Cursor.DEFAULT_CURSOR;
@@ -110,8 +110,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
         mouseX = e.getX();
         mouseY = e.getY();
         if (e != null) {
-            nodeUnderCursor = graph.findNodeUnderCursor(e.getX(), e.getY());
-            if (nodeUnderCursor == null) {
+            UINodeUnderCursor = graph.findNodeUnderCursor(e.getX(), e.getY());
+            if (UINodeUnderCursor == null) {
                 edgeUnderCursor = graph.findEdgeUnderCursor(e.getX(), e.getY());
             }
         }
@@ -136,8 +136,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
     public void keyTyped(KeyEvent e) {
         char key = e.getKeyChar();
         if (key == 'x') {
-            if (nodeUnderCursor != null) {
-                graph.removeNode(nodeUnderCursor);
+            if (UINodeUnderCursor != null) {
+                graph.removeNode(UINodeUnderCursor);
             } else if (edgeUnderCursor != null) {
                 graph.removeEdge(edgeUnderCursor);
             }
