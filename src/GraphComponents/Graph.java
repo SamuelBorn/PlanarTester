@@ -12,6 +12,7 @@ public class Graph {
         this.nodes = new ArrayList<>();
         this.edges = new ArrayList<>();
     }
+
     public Graph(List<Node> nodes, List<Edge> edges) {
         this.nodes = nodes;
         this.edges = edges;
@@ -39,11 +40,27 @@ public class Graph {
     }
 
     public void removeAttachedEdges(Node n) {
-        edges.removeIf(edge->n.equals(edge.getNodeA()) || n.equals(edge.getNodeB()));
+        edges.removeIf(edge -> n.equals(edge.getNodeA()) || n.equals(edge.getNodeB()));
     }
 
     public void removeEdge(Edge e) {
         edges.remove(e);
+    }
+
+    public boolean isEdge(Node nodeA, Node nodeB){
+        return edges.stream().filter(edge -> edge.hasEndpoint(nodeA) && edge.hasEndpoint(nodeB)).findAny().isPresent();
+    }
+
+    public List<Node> getAdjacentNodes(Node n) {
+        List<Node> nodes = new ArrayList<>();
+        for (Edge edge : edges) {
+            if (n.equals(edge.getNodeA())) {
+                nodes.add(edge.getNodeB());
+            } else if (n.equals(edge.getNodeB())) {
+                nodes.add(edge.getNodeA());
+            }
+        }
+        return nodes;
     }
 
     public Node findNodeUnderCursor(int mx, int my) {

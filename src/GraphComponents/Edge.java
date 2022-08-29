@@ -20,6 +20,10 @@ public class Edge {
         return nodeB;
     }
 
+    public boolean hasEndpoint(Node n) {
+        return nodeA == n || nodeB == n;
+    }
+
     public void setColor(Color color) {
         this.color = color;
     }
