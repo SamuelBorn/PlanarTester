@@ -15,6 +15,12 @@ public class ExampleGraphCreator {
         Node n4 = new Node(200, 200);
         Node n5 = new Node(200, 300);
         Node n6 = new Node(300, 300);
+        n1.setName("1");
+        n2.setName("2");
+        n3.setName("3");
+        n4.setName("4");
+        n5.setName("5");
+        n6.setName("6");
         g.addNode(n1);
         g.addNode(n2);
         g.addNode(n3);
