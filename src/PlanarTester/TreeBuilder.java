@@ -48,6 +48,8 @@ public class TreeBuilder {
     public static void main(String[] args) {
         Tree x = TreeBuilder.buildTree(ExampleGraphCreator.getExampleGraph1());
         System.out.println(x);
+        System.out.println(x.getEdgeList());
+        System.out.println(LowPointGetter.getLowPoints(x.getEdgeList()));
     }
 }
 

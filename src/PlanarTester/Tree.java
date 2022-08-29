@@ -18,6 +18,13 @@ public class Tree {
         nodes.add(n);
     }
 
+    public List<Edge> getEdgeList() {
+        List<Edge> edges = new ArrayList<>();
+        for (TreeNode node : nodes) {
+            edges.addAll(node.getEdges());
+        }
+        return edges;
+    }
 
     @Override
     public String toString() {
