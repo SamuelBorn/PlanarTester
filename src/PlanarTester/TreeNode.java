@@ -24,12 +24,12 @@ public class TreeNode {
         edges.add(new Edge(this, nodeB, false));
     }
 
-    public List<TreeNode> getTreeEdgeNodes() {
-        return edges.parallelStream().filter(edge -> edge.isTreeEdge()).map(edge -> edge.getNodeB()).toList();
+    public List<Edge> getTreeEdges() {
+        return edges.parallelStream().filter(edge -> edge.isTreeEdge()).toList();
     }
 
-    public List<TreeNode> getNonTreeEdgeNodes() {
-        return edges.parallelStream().filter(edge -> !edge.isTreeEdge()).map(edge -> edge.getNodeB()).toList();
+    public List<Edge> getNonTreeEdges() {
+        return edges.parallelStream().filter(edge -> !edge.isTreeEdge()).toList();
     }
 
     public List<Edge> getEdges() {

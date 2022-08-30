@@ -1,5 +1,7 @@
 package PlanarTester;
 
+import java.util.List;
+
 public class Edge {
     private TreeNode nodeA;
     private TreeNode nodeB;
@@ -15,24 +17,20 @@ public class Edge {
         return nodeA;
     }
 
-    public void setNodeA(TreeNode nodeA) {
-        this.nodeA = nodeA;
-    }
-
     public TreeNode getNodeB() {
         return nodeB;
-    }
-
-    public void setNodeB(TreeNode nodeB) {
-        this.nodeB = nodeB;
     }
 
     public boolean isTreeEdge() {
         return isTreeEdge;
     }
 
-    public void setTreeEdge(boolean treeEdge) {
-        isTreeEdge = treeEdge;
+    public List<Edge> getBackEdges() {
+        List<Edge> backEdges = getNodeB().getNonTreeEdges();
+        for (Edge edge : getNodeB().getTreeEdges()) {
+            backEdges.addAll(edge.getBackEdges());
+        }
+        return backEdges;
     }
 
     @Override

@@ -50,6 +50,7 @@ public class TreeBuilder {
         System.out.println(x);
         System.out.println(x.getEdgeList());
         System.out.println(LowPointGetter.getLowPoints(x.getEdgeList()));
+        System.out.println(x.getEdgeList());
     }
 }
 
