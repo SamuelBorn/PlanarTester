@@ -28,7 +28,7 @@ class EqualityConflictMergerTest {
         Edge e4 = new Edge(n4, n1, false);
         Edge e5 = new Edge(n5, n1, false);
         Edge e6 = new Edge(n6, n1, false);
-        Edge e7 = new Edge(n6, n1, false);
+        Edge e7 = new Edge(n7, n1, false);
 
         Conflict c1 = new Conflict(e1, e2, Conflict.ConflictType.EQUALITY);
         Conflict c2 = new Conflict(e1, e3, Conflict.ConflictType.EQUALITY);
@@ -66,5 +66,12 @@ class EqualityConflictMergerTest {
         x = EqualityConflictMerger.getConnectedComponent(conflicts.get(5), conflicts, new HashSet<>());
         System.out.println("56: " + x);
         System.out.println("count = " + x.size());
+    }
+
+    @Test
+    void getCompressedNodesTest() {
+        for (List<Conflict> compressedNode : EqualityConflictMerger.getCompressedNodes(conflicts)) {
+            System.out.println(compressedNode.size() + ": " +compressedNode);
+        }
     }
 }

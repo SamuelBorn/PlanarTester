@@ -1,18 +1,28 @@
 package PlanarTester;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import Util.NestedListChecker;
+
+import java.util.*;
 import java.util.stream.Stream;
 
 public class EqualityConflictMerger {
     public static void mergeEqualityConflicts(List<Conflict> conflicts) {
-        List<Conflict> equalityConflicts = conflicts.parallelStream().filter(conflict -> conflict.getType() == Conflict.ConflictType.EQUALITY).toList();
-        List<List<Integer>> compressedNodes = new ArrayList<>();
-        for (Conflict conflict : equalityConflicts) {
 
+
+    }
+
+    public static List<List<Conflict>> getCompressedNodes(List<Conflict> conflicts) {
+        List<Conflict> equalityConflicts = conflicts.parallelStream()
+                .filter(conflict -> conflict.getType() == Conflict.ConflictType.EQUALITY)
+                .toList();
+
+        List<List<Conflict>> compressedNodes = new ArrayList<>();
+        for (Conflict conflict : equalityConflicts) {
+            List<Conflict> component = getConnectedComponent(conflict, equalityConflicts, new HashSet<>());
+            if (NestedListChecker.contains(component.get(0), compressedNodes)) continue;
+            compressedNodes.add(component);
         }
+        return compressedNodes;
     }
 
     public static List<Conflict> getConnectedComponent(Conflict start, List<Conflict> conflicts, Set<Conflict> forbidden) {

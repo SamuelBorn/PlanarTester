@@ -25,7 +25,8 @@ public class Conflict {
 
     @Override
     public String toString() {
-        return "Conflict{" + edge1 + ", " + edge2 + ", " + type + '}';
+        //return "Conflict{" + edge1 + ", " + edge2 + ", " + type + '}';
+        return "c" + edge1.getNodeA().getDFSNumber() + "-" + edge2.getNodeA().getDFSNumber();
     }
 
     public enum ConflictType {EQUALITY, INEQUALITY}
