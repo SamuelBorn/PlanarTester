@@ -11,10 +11,22 @@ public class Conflict {
         this.type = type;
     }
 
+    public Edge getEdge1() {
+        return edge1;
+    }
+
+    public Edge getEdge2() {
+        return edge2;
+    }
+
+    public ConflictType getType() {
+        return type;
+    }
+
     @Override
     public String toString() {
         return "Conflict{" + edge1 + ", " + edge2 + ", " + type + '}';
     }
 
-    enum ConflictType {EQUALITY, INEQUALITY}
+    public enum ConflictType {EQUALITY, INEQUALITY}
 }

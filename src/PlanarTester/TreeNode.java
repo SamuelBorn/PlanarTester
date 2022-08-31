@@ -7,6 +7,12 @@ public class TreeNode {
     private int DFSNumber;
     private List<Edge> edges = new ArrayList<>();
 
+    public TreeNode() {}
+
+    public TreeNode(int DFSNumber) {
+        this.DFSNumber = DFSNumber;
+    }
+
     public boolean isConnectedTo(TreeNode node) {
         for (Edge edge : edges) {
             if (edge.getNodeB().equals(node)) {

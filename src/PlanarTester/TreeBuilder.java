@@ -34,7 +34,8 @@ public class TreeBuilder {
         for (UINode adjacent : g.getAdjacentNodes(current)) {
             TreeNode adjacentTN = map.get(adjacent);
 
-            if (adjacentTN.isConnectedTo(currentTN)) continue;  // don't walk back
+            if (adjacentTN.isConnectedTo(currentTN))
+                continue;  // isConnectedTo operates on the tree built so far → don't walk back
 
             if (!discovered.contains(adjacent)) {
                 currentTN.addTreeEdge(adjacentTN);
@@ -43,14 +44,6 @@ public class TreeBuilder {
                 currentTN.addNonTreeEdge(adjacentTN);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Tree x = TreeBuilder.buildTree(ExampleGraphCreator.getExampleGraph1());
-        System.out.println(x);
-        System.out.println(x.getEdgeList());
-        System.out.println(LowPointGetter.getLowPoints(x.getEdgeList()));
-        System.out.println(x.getEdgeList());
     }
 }
 
