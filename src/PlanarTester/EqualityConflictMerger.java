@@ -1,13 +1,11 @@
 package PlanarTester;
 
-import Util.NestedListChecker;
+import Util.NestedListUtils;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class EqualityConflictMerger {
     public static void mergeEqualityConflicts(List<Conflict> conflicts) {
-
 
     }
 
@@ -19,7 +17,7 @@ public class EqualityConflictMerger {
         List<List<Conflict>> compressedNodes = new ArrayList<>();
         for (Conflict conflict : equalityConflicts) {
             List<Conflict> component = getConnectedComponent(conflict, equalityConflicts, new HashSet<>());
-            if (NestedListChecker.contains(component.get(0), compressedNodes)) continue;
+            if (NestedListUtils.contains(component.get(0), compressedNodes)) continue;
             compressedNodes.add(component);
         }
         return compressedNodes;
