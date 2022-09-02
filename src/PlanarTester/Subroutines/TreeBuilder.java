@@ -1,10 +1,9 @@
 package PlanarTester.Subroutines;
 
-import GraphComponents.Graph;
+import GraphComponents.UIGraph;
 import GraphComponents.UINode;
 import PlanarTester.Tree;
 import PlanarTester.TreeNode;
-import UserInterface.ExampleGraphCreator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +13,7 @@ import java.util.Map;
 public class TreeBuilder {
     private static int depth;  // global dfs number, needed for recursion
 
-    public static Tree buildTree(Graph g) {
+    public static Tree buildTree(UIGraph g) {
         List<UINode> discovered = new ArrayList<>();
         depth = 0;
         Map<UINode, TreeNode> map = new HashMap<>();
@@ -28,7 +27,7 @@ public class TreeBuilder {
         return tree;
     }
 
-    public static void DFS(Graph g, Map<UINode, TreeNode> map, List<UINode> discovered, UINode current) {
+    public static void DFS(UIGraph g, Map<UINode, TreeNode> map, List<UINode> discovered, UINode current) {
         discovered.add(current);
         TreeNode currentTN = map.get(current);
         currentTN.setDFSNumber(depth++);

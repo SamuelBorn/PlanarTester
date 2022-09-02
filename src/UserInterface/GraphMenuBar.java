@@ -1,12 +1,11 @@
 package UserInterface;
 
-import GraphComponents.Graph;
+import GraphComponents.UIGraph;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 
 public class GraphMenuBar extends JMenuBar implements ActionListener {
 
@@ -46,7 +45,7 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(loadEmpty)){
-            panel.setGraph(new Graph());
+            panel.setGraph(new UIGraph());
             panel.repaint();
         }
         if (e.getSource().equals(loadK5)){

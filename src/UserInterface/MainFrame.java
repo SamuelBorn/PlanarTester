@@ -1,11 +1,11 @@
 package UserInterface;
 
-import GraphComponents.Graph;
+import GraphComponents.UIGraph;
 
 import javax.swing.*;
 
 public class MainFrame extends JFrame {
-    private GraphPanel graphPanel = new GraphPanel(new Graph());
+    private GraphPanel graphPanel = new GraphPanel(new UIGraph());
     private GraphMenuBar graphMenuBar = new GraphMenuBar(graphPanel);
 
 

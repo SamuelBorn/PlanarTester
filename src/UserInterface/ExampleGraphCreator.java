@@ -1,12 +1,12 @@
 package UserInterface;
 
 import GraphComponents.UIEdge;
-import GraphComponents.Graph;
+import GraphComponents.UIGraph;
 import GraphComponents.UINode;
 
 public class ExampleGraphCreator {
-    public static Graph getExampleGraph1(){
-        Graph g = new Graph();
+    public static UIGraph getExampleGraph1(){
+        UIGraph g = new UIGraph();
         UINode n0 = new UINode(100,100);
         UINode n1 = new UINode(100, 200);
         UINode n2 = new UINode(100, 300);

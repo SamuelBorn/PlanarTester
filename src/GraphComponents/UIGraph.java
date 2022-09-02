@@ -4,16 +4,16 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Graph {
+public class UIGraph {
     private List<UINode> UINodes;
     private List<UIEdge> edges;
 
-    public Graph() {
+    public UIGraph() {
         this.UINodes = new ArrayList<>();
         this.edges = new ArrayList<>();
     }
 
-    public Graph(List<UINode> UINodes, List<UIEdge> edges) {
+    public UIGraph(List<UINode> UINodes, List<UIEdge> edges) {
         this.UINodes = UINodes;
         this.edges = edges;
     }
