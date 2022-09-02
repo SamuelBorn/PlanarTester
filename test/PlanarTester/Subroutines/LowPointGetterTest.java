@@ -1,9 +1,10 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
 
+import PlanarTester.Subroutines.LowPointGetter;
+import PlanarTester.Subroutines.TreeBuilder;
+import PlanarTester.Tree;
 import UserInterface.ExampleGraphCreator;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class LowPointGetterTest {
     @Test

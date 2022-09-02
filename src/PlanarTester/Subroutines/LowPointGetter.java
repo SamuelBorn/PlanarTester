@@ -1,4 +1,6 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
+
+import PlanarTester.Edge;
 
 import java.util.HashMap;
 import java.util.List;

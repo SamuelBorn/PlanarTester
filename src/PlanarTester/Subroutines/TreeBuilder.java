@@ -1,7 +1,9 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
 
 import GraphComponents.Graph;
 import GraphComponents.UINode;
+import PlanarTester.Tree;
+import PlanarTester.TreeNode;
 import UserInterface.ExampleGraphCreator;
 
 import java.util.ArrayList;

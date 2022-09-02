@@ -1,17 +1,16 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
 
+import PlanarTester.Conflict;
+import PlanarTester.Edge;
+import PlanarTester.Subroutines.EqualityConflictMerger;
+import PlanarTester.TreeNode;
 import Util.Tuple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class BipartiteCheckerTest {
+class EqualityConflictMergerTest {
     List<Conflict> conflicts;
     List<Edge> edges;
     List<Conflict> equalityConflicts;
@@ -50,18 +49,31 @@ class BipartiteCheckerTest {
 
         equalityConflicts = conflicts.stream().filter(conflict -> conflict.getType() == Conflict.ConflictType.EQUALITY).toList();
         inequalityConflicts = conflicts.stream().filter(conflict -> conflict.getType() == Conflict.ConflictType.INEQUALITY).toList();
+
+    }
+
+
+    @Test
+    void getCompressedNodesTest2() {
+        System.out.println(EqualityConflictMerger.getAdjacentEdges(edges.get(0), equalityConflicts, new ArrayList<>()));
+        System.out.println(EqualityConflictMerger.getConnectedComponent(edges.get(0), equalityConflicts));
+        System.out.println(EqualityConflictMerger.getConnectedComponent(edges.get(7), equalityConflicts));
     }
 
     @Test
-    void bipartiteTest() {
+    void getMappingTest() {
+        Map<Edge, List<Edge>> map = EqualityConflictMerger.getEdgeComponentMap(edges, equalityConflicts);
+        for (Map.Entry<Edge, List<Edge>> edgeListEntry : map.entrySet()) {
+            System.out.println(edgeListEntry.getKey().getNodeA().getDFSNumber() + " → " + edgeListEntry.getValue());
+        }
+    }
+
+    @Test
+    void getMergedGraphTest() {
         List<Tuple<List<Edge>, List<Edge>>> g = EqualityConflictMerger.getMergedGraph(EqualityConflictMerger.getEdgeComponentMap(edges, equalityConflicts), inequalityConflicts);
 
-//        for (Tuple<List<Edge>, List<Edge>> listListTuple : g) {
-//            System.out.println(listListTuple.getX() + " → " + listListTuple.getY());
-//        }
-
-        for (Map.Entry<Edge, Color> edgeColorEntry : BipartiteChecker.getColorMapping(g).entrySet()) {
-            System.out.println(edgeColorEntry.getKey() + " → " + edgeColorEntry.getValue());
+        for (Tuple<List<Edge>, List<Edge>> listListTuple : g) {
+            System.out.println(listListTuple.getX() + " → " + listListTuple.getY());
         }
     }
 }

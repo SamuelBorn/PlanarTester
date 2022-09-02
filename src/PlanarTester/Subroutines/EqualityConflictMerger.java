@@ -1,5 +1,7 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
 
+import PlanarTester.Conflict;
+import PlanarTester.Edge;
 import Util.NestedListUtils;
 import Util.Tuple;
 

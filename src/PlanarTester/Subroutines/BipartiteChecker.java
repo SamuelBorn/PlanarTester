@@ -1,5 +1,6 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
 
+import PlanarTester.Edge;
 import Util.Tuple;
 
 import java.awt.*;

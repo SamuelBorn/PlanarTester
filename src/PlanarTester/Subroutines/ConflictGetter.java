@@ -1,5 +1,9 @@
-package PlanarTester;
+package PlanarTester.Subroutines;
 
+import PlanarTester.Conflict;
+import PlanarTester.Edge;
+import PlanarTester.Tree;
+import PlanarTester.TreeNode;
 import Util.Tuple;
 
 import java.util.ArrayList;
