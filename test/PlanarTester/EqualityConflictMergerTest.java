@@ -1,5 +1,6 @@
 package PlanarTester;
 
+import Util.Tuple;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,6 +10,7 @@ class EqualityConflictMergerTest {
     List<Conflict> conflicts;
     List<Edge> edges;
     List<Conflict> equalityConflicts;
+    List<Conflict> inequalityConflicts;
 
     @BeforeEach
     void setUp() {
@@ -40,7 +42,10 @@ class EqualityConflictMergerTest {
         Conflict c7 = new Conflict(e4, e7, Conflict.ConflictType.EQUALITY);
         Conflict c8 = new Conflict(e1, e8, Conflict.ConflictType.INEQUALITY);
         conflicts = Arrays.asList(c1, c2, c3, c4, c5, c6, c7, c8);
+
         equalityConflicts = conflicts.stream().filter(conflict -> conflict.getType() == Conflict.ConflictType.EQUALITY).toList();
+        inequalityConflicts = conflicts.stream().filter(conflict -> conflict.getType() == Conflict.ConflictType.INEQUALITY).toList();
+
     }
 
 
@@ -53,9 +58,18 @@ class EqualityConflictMergerTest {
 
     @Test
     void getMappingTest() {
-        Map<Edge, List<Edge>> map = EqualityConflictMerger.getMergeMapping(edges, equalityConflicts);
+        Map<Edge, List<Edge>> map = EqualityConflictMerger.getEdgeComponentMap(edges, equalityConflicts);
         for (Map.Entry<Edge, List<Edge>> edgeListEntry : map.entrySet()) {
             System.out.println(edgeListEntry.getKey().getNodeA().getDFSNumber() + " → " + edgeListEntry.getValue());
+        }
+    }
+
+    @Test
+    void getMergedGraphTest() {
+        List<Tuple<List<Edge>, List<Edge>>> g = EqualityConflictMerger.getMergedGraph(EqualityConflictMerger.getEdgeComponentMap(edges, equalityConflicts), inequalityConflicts);
+
+        for (Tuple<List<Edge>, List<Edge>> listListTuple : g) {
+            System.out.println(listListTuple.getX() + " → " + listListTuple.getY());
         }
     }
 }

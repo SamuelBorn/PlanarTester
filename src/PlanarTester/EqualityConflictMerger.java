@@ -7,7 +7,22 @@ import java.util.*;
 
 public class EqualityConflictMerger {
 
-    public static Map<Edge, List<Edge>> getMergeMapping(List<Edge> edges, List<Conflict> equalityConflicts) {
+    public static List<Tuple<List<Edge>, List<Edge>>> getMergedGraph(Map<Edge, List<Edge>> edgeComponentMap, List<Conflict> inequalityConflicts) {
+        List<Tuple<List<Edge>, List<Edge>>> mergedGraph = new ArrayList<>();
+
+        for (Conflict inequalityConflict : inequalityConflicts) {
+            List<Edge> node1 = edgeComponentMap.get(inequalityConflict.getEdge1());
+            List<Edge> node2 = edgeComponentMap.get(inequalityConflict.getEdge2());
+
+            if (node1 == node2) continue;
+
+            mergedGraph.add(new Tuple<>(node1, node2));
+        }
+
+        return mergedGraph;
+    }
+
+    public static Map<Edge, List<Edge>> getEdgeComponentMap(List<Edge> edges, List<Conflict> equalityConflicts) {
         List<List<Edge>> existingComponents = new ArrayList<>();
         Map<Edge, List<Edge>> mapping = new HashMap<>();
 
