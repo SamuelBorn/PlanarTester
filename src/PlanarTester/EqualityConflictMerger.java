@@ -1,46 +1,58 @@
 package PlanarTester;
 
 import Util.NestedListUtils;
+import Util.Tuple;
 
 import java.util.*;
 
 public class EqualityConflictMerger {
-    public static void mergeEqualityConflicts(List<Conflict> conflicts) {
 
-    }
+    public static Map<Edge, List<Edge>> getMergeMapping(List<Edge> edges, List<Conflict> equalityConflicts) {
+        List<List<Edge>> existingComponents = new ArrayList<>();
+        Map<Edge, List<Edge>> mapping = new HashMap<>();
 
-    public static List<List<Conflict>> getCompressedNodes(List<Conflict> conflicts) {
-        List<Conflict> equalityConflicts = conflicts.parallelStream()
-                .filter(conflict -> conflict.getType() == Conflict.ConflictType.EQUALITY)
-                .toList();
-
-        List<List<Conflict>> compressedNodes = new ArrayList<>();
-        for (Conflict conflict : equalityConflicts) {
-            List<Conflict> component = getConnectedComponent(conflict, equalityConflicts, new HashSet<>());
-            if (NestedListUtils.contains(component.get(0), compressedNodes)) continue;
-            compressedNodes.add(component);
+        for (Edge e : edges) {
+            List<Edge> existingComponent = NestedListUtils.getContainingList(e, existingComponents);
+            if (existingComponent != null) {
+                mapping.put(e, existingComponent);
+            } else {
+                mapping.put(e, getConnectedComponent(e, equalityConflicts));
+            }
         }
-        return compressedNodes;
+        return mapping;
     }
 
-    public static List<Conflict> getConnectedComponent(Conflict start, List<Conflict> conflicts, Set<Conflict> forbidden) {
-        if (getAdjacentEqualityConflicts(start, conflicts, forbidden).isEmpty()) return Arrays.asList(start);
+    public static List<Edge> getConnectedComponent(Edge e, List<Conflict> equalityConflicts) {
+        return getConnectedComponentRecursive(e, equalityConflicts, new ArrayList<>());
+    }
 
-        forbidden.add(start);
-        for (Conflict c : getAdjacentEqualityConflicts(start, conflicts, forbidden)) {
-            forbidden.addAll(getConnectedComponent(c, conflicts, forbidden));
+    private static List<Edge> getConnectedComponentRecursive(Edge e, List<Conflict> equalityConflicts, List<Edge> visited) {
+        List<Edge> adj = getAdjacentEdges(e, equalityConflicts, visited);
+        if (adj.isEmpty()) {
+            return Arrays.asList(e);
         }
-        return new ArrayList<>(forbidden);
+
+        visited.addAll(adj);
+        for (Edge edge : adj) {
+            visited.addAll(getConnectedComponentRecursive(edge, equalityConflicts, visited));
+        }
+        return new ArrayList<>(new HashSet<>(visited));
     }
 
-    public static List<Conflict> getAdjacentEqualityConflicts(Conflict start, List<Conflict> conflicts, Set<Conflict> forbidden) {
-        Edge e1 = start.getEdge1();
-        Edge e2 = start.getEdge2();
-
-        return conflicts.parallelStream()
-                .filter(c -> c.getType() == Conflict.ConflictType.EQUALITY)
-                .filter(c -> !forbidden.contains(c))
-                .filter(c -> c.getEdge1() == e1 || c.getEdge1() == e2 || c.getEdge2() == e1 || c.getEdge2() == e2)
-                .toList();
+    public static List<Edge> getAdjacentEdges(Edge e, List<Conflict> equalityConflicts, List<Edge> visited) {
+        List<Edge> adjacentEdges = new ArrayList<>();
+        for (Conflict equalityConflict : equalityConflicts) {
+            Edge adjacent = null;
+            if (equalityConflict.getEdge1() == e) {
+                adjacent = equalityConflict.getEdge2();
+            }
+            if (equalityConflict.getEdge2() == e) {
+                adjacent = equalityConflict.getEdge1();
+            }
+            if (adjacent != null && !visited.contains(adjacent)) {
+                adjacentEdges.add(adjacent);
+            }
+        }
+        return adjacentEdges;
     }
 }
