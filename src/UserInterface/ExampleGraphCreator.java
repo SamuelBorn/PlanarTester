@@ -65,6 +65,35 @@ public class ExampleGraphCreator {
         return g;
     }
 
+    public static UIGraph getK4() {
+        UIGraph g = new UIGraph();
+        UINode n0 = new UINode(100, 100);
+        UINode n1 = new UINode(300, 100);
+        UINode n2 = new UINode(100, 300);
+        UINode n3 = new UINode(300, 300);
+        n0.setName("0");
+        n1.setName("1");
+        n2.setName("2");
+        n3.setName("3");
+
+        List<UINode> nodes = Arrays.asList(n0, n1, n2, n3);
+
+        for (UINode node : nodes) {
+            g.addNode(node);
+        }
+
+        for (UINode node1 : nodes) {
+            for (UINode node2 : nodes) {
+                if (node1 == node2) {
+                    continue;
+                }
+                g.addEdge(new UIEdge(node1, node2));
+            }
+        }
+
+        return g;
+    }
+
     public static UIGraph getK33() {
         UIGraph g = new UIGraph();
         List<UINode> left = Arrays.asList(

@@ -20,6 +20,8 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
     private JMenu graphMenu = new JMenu("Load examples  ");
     private JMenuItem loadEmpty = new JMenuItem("Load new empty graph");
     private JMenuItem loadK5 = new JMenuItem("Load K⁵");
+    private JMenuItem loadK4 = new JMenuItem("Load K⁴");
+
     private JMenuItem loadK33 = new JMenuItem("Load K³³");
 
     private JMenuItem loadExample1 = new JMenuItem("Load example 1");
@@ -30,11 +32,14 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
 
         graphMenu.add(loadEmpty);
         graphMenu.add(loadK5);
+        graphMenu.add(loadK4);
         graphMenu.add(loadK33);
         graphMenu.add(loadExample1);
         this.add(graphMenu);
+
         loadEmpty.addActionListener(this);
         loadK5.addActionListener(this);
+        loadK4.addActionListener(this);
         loadK33.addActionListener(this);
         loadExample1.addActionListener(this);
 
@@ -53,6 +58,10 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
         }
         if (e.getSource().equals(loadK5)) {
             panel.setGraph(ExampleGraphCreator.getK5());
+            panel.repaint();
+        }
+        if (e.getSource().equals(loadK4)) {
+            panel.setGraph(ExampleGraphCreator.getK4());
             panel.repaint();
         }
         if (e.getSource().equals(loadK33)) {

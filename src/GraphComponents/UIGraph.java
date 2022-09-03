@@ -96,4 +96,11 @@ public class UIGraph {
             UINode.draw(g);
         }
     }
+
+    @Override
+    public String toString() {
+        return "UIGraph{" +
+                "edges=" + edges +
+                '}';
+    }
 }
