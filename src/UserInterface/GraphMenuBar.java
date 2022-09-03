@@ -7,6 +7,8 @@ import PlanarTester.*;
 import PlanarTester.Subroutines.TreeBuilder;
 
 import javax.swing.*;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,8 +23,7 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
     private JMenuItem loadK33 = new JMenuItem("Load K³³");
 
     private JMenuItem loadExample1 = new JMenuItem("Load example 1");
-    private JMenu testPlanar = new JMenu("Check for planarity");
-    private JMenuItem testPlanarConfirm = new JMenuItem("Perform check");
+    private JMenuItem testPlanar = new JMenuItem("Check for planarity");
 
     public GraphMenuBar(GraphPanel panel) {
         this.panel = panel;
@@ -32,16 +33,13 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
         graphMenu.add(loadK33);
         graphMenu.add(loadExample1);
         this.add(graphMenu);
-
-        testPlanar.add(testPlanarConfirm);
-        this.add(testPlanar);
-
         loadEmpty.addActionListener(this);
         loadK5.addActionListener(this);
         loadK33.addActionListener(this);
         loadExample1.addActionListener(this);
 
-        testPlanarConfirm.addActionListener(this);
+        this.add(testPlanar);
+        testPlanar.addActionListener(this);
 
         this.setBackground(new Color(238, 238, 238));
         this.setBorderPainted(false);
@@ -65,9 +63,16 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
             panel.setGraph(ExampleGraphCreator.getExampleGraph1());
             panel.repaint();
         }
-        if (e.getSource().equals(testPlanarConfirm)) {
+        if (e.getSource().equals(testPlanar)) {
             if (panel.getGraph().getNodes().size() == 0) return;
             Tree t = TreeBuilder.buildTree(panel.getGraph());
+
+            for (TreeNode node : t.getNodes()) { // set name to DFS number
+                UINode uiNode = t.treeNodeUINodeMap.get(node);
+                String name = node.getDFSNumber() + "";
+                uiNode.setName(name);
+            }
+            panel.repaint();
 
             Map<Edge, Color> colorMap = null;
             try {
@@ -82,13 +87,6 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
                 Color uiEdgeColor = colorMap.get(nonTreeEdge);
 
                 uiEdge.setColor(uiEdgeColor);
-            }
-
-            for (TreeNode node : t.getNodes()) { // set name to DFS number
-                UINode uiNode = t.treeNodeUINodeMap.get(node);
-                String name = node.getDFSNumber() + "";
-
-                uiNode.setName(name);
             }
             panel.repaint();
         }

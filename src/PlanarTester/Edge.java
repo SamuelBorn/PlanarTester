@@ -36,10 +36,10 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "" + nodeA.getDFSNumber();
-//        if (isTreeEdge) {
-//            return "T(" + nodeA.getDFSNumber() + ", " + nodeB.getDFSNumber() + ")";
-//        }
-//        return "X(" + nodeA.getDFSNumber() + ", " + nodeB.getDFSNumber() + ")";
+//        return "" + nodeA.getDFSNumber();
+        if (isTreeEdge) {
+            return "T(" + nodeA.getDFSNumber() + ", " + nodeB.getDFSNumber() + ")";
+        }
+        return "X(" + nodeA.getDFSNumber() + ", " + nodeB.getDFSNumber() + ")";
     }
 }
