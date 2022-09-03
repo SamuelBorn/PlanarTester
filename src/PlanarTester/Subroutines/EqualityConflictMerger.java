@@ -16,7 +16,7 @@ public class EqualityConflictMerger {
             List<Edge> node1 = edgeComponentMap.get(inequalityConflict.getEdge1());
             List<Edge> node2 = edgeComponentMap.get(inequalityConflict.getEdge2());
 
-            if (node1 == node2) continue;
+            if (node1 == node2) throw new IllegalArgumentException("graph is not bipartite");
 
             mergedGraph.add(new Tuple<>(node1, node2));
         }
@@ -24,6 +24,10 @@ public class EqualityConflictMerger {
         return mergedGraph;
     }
 
+    /**
+     * Maps every Edge to a component.
+     * A component is a list of edges connected by equality Conflicts.
+     */
     public static Map<Edge, List<Edge>> getEdgeComponentMap(List<Edge> edges, List<Conflict> equalityConflicts) {
         List<List<Edge>> existingComponents = new ArrayList<>();
         Map<Edge, List<Edge>> mapping = new HashMap<>();

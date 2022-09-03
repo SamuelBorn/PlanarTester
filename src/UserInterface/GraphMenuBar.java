@@ -1,6 +1,7 @@
 package UserInterface;
 
 import GraphComponents.UIGraph;
+import PlanarTester.MainPlanarTester;
 
 import javax.swing.*;
 import java.awt.*;
@@ -59,7 +60,7 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
             panel.repaint();
         }
         if (e.getSource().equals(testPlanarConfirm)){
-
+            MainPlanarTester.testPlanar(panel.getGraph());
         }
     }
 }

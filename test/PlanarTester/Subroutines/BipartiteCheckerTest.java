@@ -64,8 +64,8 @@ class BipartiteCheckerTest {
     void bipartiteTest() {
         List<Tuple<List<Edge>, List<Edge>>> g = EqualityConflictMerger.getMergedGraph(EqualityConflictMerger.getEdgeComponentMap(edges, equalityConflicts), inequalityConflicts);
 
-        for (Map.Entry<Edge, Color> edgeColorEntry : BipartiteChecker.getColorMapping(g).entrySet()) {
-            System.out.println(edgeColorEntry.getKey() + " → " + edgeColorEntry.getValue());
-        }
+//        for (Map.Entry<Edge, Color> edgeColorEntry : BipartiteChecker.getColorMapping(g).entrySet()) {
+//            System.out.println(edgeColorEntry.getKey() + " → " + edgeColorEntry.getValue());
+//        }
     }
 }

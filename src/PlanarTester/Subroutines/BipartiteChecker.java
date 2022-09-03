@@ -1,6 +1,7 @@
 package PlanarTester.Subroutines;
 
 import PlanarTester.Edge;
+import Util.NestedListUtils;
 import Util.Tuple;
 
 import java.awt.*;
@@ -14,10 +15,15 @@ public class BipartiteChecker {
      * Maps every edge to a color.
      * If there does not exist a Color mapping null is returned.
      */
-    public static Map<Edge, Color> getColorMapping(List<Tuple<List<Edge>, List<Edge>>> graph) {
+    public static Map<Edge, Color> getColorMapping(List<Tuple<List<Edge>, List<Edge>>> graph, List<Edge> nonTreeEdges, Map<Edge, List<Edge>> componentMap) {
         Map<Edge, Color> edgeColorMap = new HashMap<>();
 
-        getColorMappingRec(graph.get(0).getX(), new ArrayList<>(), Color.BLUE, edgeColorMap, graph);
+        for (Edge nonTreeEdge : nonTreeEdges) {
+            if (edgeColorMap.containsKey(nonTreeEdge)) continue;
+
+            List<Edge> component = componentMap.get(nonTreeEdge);
+            getColorMappingRec(component, new ArrayList<>(), Color.BLUE, edgeColorMap, graph);
+        }
 
         return edgeColorMap;
     }

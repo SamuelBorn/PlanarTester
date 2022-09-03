@@ -26,6 +26,10 @@ public class Tree {
         return edges;
     }
 
+    public List<Edge> getNonTreeEdges() {
+        return getEdgeList().stream().filter(edge -> !edge.isTreeEdge()).toList();
+    }
+
     @Override
     public String toString() {
         String ret = "Tree: \n";

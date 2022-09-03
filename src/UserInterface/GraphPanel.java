@@ -158,4 +158,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
     public void setGraph(UIGraph uiGraph){
         this.uiGraph = uiGraph;
     }
+
+    public UIGraph getGraph() {
+        return uiGraph;
+    }
 }
