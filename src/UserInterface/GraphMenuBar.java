@@ -3,11 +3,8 @@ package UserInterface;
 import GraphComponents.UIEdge;
 import GraphComponents.UIGraph;
 import GraphComponents.UINode;
-import PlanarTester.Edge;
-import PlanarTester.MainPlanarTester;
+import PlanarTester.*;
 import PlanarTester.Subroutines.TreeBuilder;
-import PlanarTester.Tree;
-import PlanarTester.TreeNode;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,8 +17,8 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
     private GraphPanel panel;
     private JMenu graphMenu = new JMenu("Load examples  ");
     private JMenuItem loadEmpty = new JMenuItem("Load new empty graph");
-    private JMenuItem loadK5 = new JMenuItem("Load K³³");
-    private JMenuItem loadK33 = new JMenuItem("Load K⁵");
+    private JMenuItem loadK5 = new JMenuItem("Load K⁵");
+    private JMenuItem loadK33 = new JMenuItem("Load K³³");
 
     private JMenuItem loadExample1 = new JMenuItem("Load example 1");
     private JMenu testPlanar = new JMenu("Check for planarity");
@@ -52,23 +49,33 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource().equals(loadEmpty)){
+        if (e.getSource().equals(loadEmpty)) {
             panel.setGraph(new UIGraph());
             panel.repaint();
         }
-        if (e.getSource().equals(loadK5)){
-
+        if (e.getSource().equals(loadK5)) {
+            panel.setGraph(ExampleGraphCreator.getK5());
+            panel.repaint();
         }
-        if (e.getSource().equals(loadK33)){
-
+        if (e.getSource().equals(loadK33)) {
+            panel.setGraph(ExampleGraphCreator.getK33());
+            panel.repaint();
         }
-        if (e.getSource().equals(loadExample1)){
+        if (e.getSource().equals(loadExample1)) {
             panel.setGraph(ExampleGraphCreator.getExampleGraph1());
             panel.repaint();
         }
-        if (e.getSource().equals(testPlanarConfirm)){
+        if (e.getSource().equals(testPlanarConfirm)) {
+            if (panel.getGraph().getNodes().size() == 0) return;
             Tree t = TreeBuilder.buildTree(panel.getGraph());
-            Map<Edge, Color> colorMap = MainPlanarTester.testPlanar(t);
+
+            Map<Edge, Color> colorMap = null;
+            try {
+                colorMap = MainPlanarTester.testPlanar(t);
+            } catch (NotPlanarException ex) {
+                JOptionPane.showMessageDialog(this, "The given graph is not planar. \nNo LR bisection could be found.", "Not planar!", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
 
             for (Edge nonTreeEdge : t.getNonTreeEdges()) { // color the edges
                 UIEdge uiEdge = t.edgeUIEdgeMap.get(nonTreeEdge);

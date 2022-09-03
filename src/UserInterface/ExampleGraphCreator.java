@@ -4,10 +4,15 @@ import GraphComponents.UIEdge;
 import GraphComponents.UIGraph;
 import GraphComponents.UINode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
+
 public class ExampleGraphCreator {
-    public static UIGraph getExampleGraph1(){
+    public static UIGraph getExampleGraph1() {
         UIGraph g = new UIGraph();
-        UINode n0 = new UINode(100,100);
+        UINode n0 = new UINode(100, 100);
         UINode n1 = new UINode(100, 200);
         UINode n2 = new UINode(100, 300);
         UINode n3 = new UINode(200, 200);
@@ -26,12 +31,59 @@ public class ExampleGraphCreator {
         g.addNode(n4);
         g.addNode(n5);
 
-        g.addEdge(new UIEdge(n0,n1));
-        g.addEdge(new UIEdge(n1,n2));
-        g.addEdge(new UIEdge(n1,n4));
+        g.addEdge(new UIEdge(n0, n1));
+        g.addEdge(new UIEdge(n1, n2));
+        g.addEdge(new UIEdge(n1, n4));
         g.addEdge(new UIEdge(n0, n3));
         g.addEdge(new UIEdge(n3, n5));
-        g.addEdge(new UIEdge(n4,n3));
+        g.addEdge(new UIEdge(n4, n3));
+        return g;
+    }
+
+    public static UIGraph getK5() {
+        UIGraph g = new UIGraph();
+        UINode n0 = new UINode(300, 100);
+        UINode n1 = new UINode(100, 250);
+        UINode n2 = new UINode(500, 250);
+        UINode n3 = new UINode(200, 450);
+        UINode n4 = new UINode(400, 450);
+        List<UINode> nodes = Arrays.asList(n0, n1, n2, n3, n4);
+
+        for (UINode node : nodes) {
+            g.addNode(node);
+        }
+
+        for (UINode node1 : nodes) {
+            for (UINode node2 : nodes) {
+                if (node1 == node2) {
+                    continue;
+                }
+                g.addEdge(new UIEdge(node1, node2));
+            }
+        }
+
+        return g;
+    }
+
+    public static UIGraph getK33() {
+        UIGraph g = new UIGraph();
+        List<UINode> left = Arrays.asList(
+                new UINode(100, 100),
+                new UINode(100, 200),
+                new UINode(100, 300));
+
+        List<UINode> right = Arrays.asList(
+                new UINode(300, 100),
+                new UINode(300, 200),
+                new UINode(300, 300));
+
+        Stream.concat(left.stream(), right.stream()).forEach(n -> g.addNode(n));
+
+        for (UINode a : left) {
+            for (UINode b : right) {
+                g.addEdge(new UIEdge(a, b));
+            }
+        }
         return g;
     }
 }
