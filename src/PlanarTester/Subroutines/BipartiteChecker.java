@@ -1,6 +1,7 @@
 package PlanarTester.Subroutines;
 
 import PlanarTester.Edge;
+import PlanarTester.NotPlanarException;
 import Util.NestedListUtils;
 import Util.Tuple;
 
@@ -38,7 +39,7 @@ public class BipartiteChecker {
             if (current.equals(tuple.getY())) adjacent = tuple.getX();
             if (adjacent == null) continue;
 
-            if (edgeColorMap.get(adjacent.get(0)) == c) throw new IllegalArgumentException("graph is not bipartite");
+            if (edgeColorMap.get(adjacent.get(0)) == c) throw new NotPlanarException("graph is not bipartite");
             if (visited.contains(adjacent)) continue;
 
             getColorMappingRec(adjacent, visited, getOpposingColor(c), edgeColorMap, graph);

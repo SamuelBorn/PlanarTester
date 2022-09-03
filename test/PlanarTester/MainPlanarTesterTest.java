@@ -8,6 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainPlanarTesterTest {
     @Test
     void testMain() {
-        MainPlanarTester.testPlanar(ExampleGraphCreator.getExampleGraph1());
+
     }
 }

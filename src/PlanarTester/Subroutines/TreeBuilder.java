@@ -24,6 +24,7 @@ public class TreeBuilder {
             map.put(UINode, tn);
         }
         DFS(g, map, discovered, g.getNodes().get(0));
+        tree.setMapping(map, g);
         return tree;
     }
 

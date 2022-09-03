@@ -2,6 +2,7 @@ package PlanarTester.Subroutines;
 
 import PlanarTester.Conflict;
 import PlanarTester.Edge;
+import PlanarTester.NotPlanarException;
 import Util.NestedListUtils;
 import Util.Tuple;
 
@@ -16,7 +17,7 @@ public class EqualityConflictMerger {
             List<Edge> node1 = edgeComponentMap.get(inequalityConflict.getEdge1());
             List<Edge> node2 = edgeComponentMap.get(inequalityConflict.getEdge2());
 
-            if (node1 == node2) throw new IllegalArgumentException("graph is not bipartite");
+            if (node1 == node2) throw new NotPlanarException("graph is not bipartite");
 
             mergedGraph.add(new Tuple<>(node1, node2));
         }

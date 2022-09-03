@@ -13,12 +13,12 @@ public class ExampleGraphCreator {
         UINode n3 = new UINode(200, 200);
         UINode n4 = new UINode(200, 300);
         UINode n5 = new UINode(300, 300);
-        n0.setName("0");
-        n1.setName("1");
-        n2.setName("2");
-        n3.setName("4");
-        n4.setName("3");
-        n5.setName("5");
+//        n0.setName("0");
+//        n1.setName("1");
+//        n2.setName("2");
+//        n3.setName("4");
+//        n4.setName("3");
+//        n5.setName("5");
         g.addNode(n0);
         g.addNode(n1);
         g.addNode(n2);

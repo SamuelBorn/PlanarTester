@@ -15,20 +15,20 @@ public class UINode {
 
     public void draw(Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillOval(x-r, y-r, r+r, r+r);
+        g.fillOval(x - r, y - r, r + r, r + r);
         g.setColor(Color.BLACK);
-        g.drawOval(x-r, y-r, r+r, r+r);
+        g.drawOval(x - r, y - r, r + r, r + r);
 
         FontMetrics fm = g.getFontMetrics();
-        int tx = x - fm.stringWidth(name)/2;
-        int ty = y - fm.getHeight()/2 + fm.getAscent();
+        int tx = x - fm.stringWidth(name) / 2;
+        int ty = y - fm.getHeight() / 2 + fm.getAscent();
         g.drawString(name, tx, ty);
     }
 
     public boolean isUnderCursor(int mx, int my) {
         int a = x - mx;
         int b = y - my;
-        return a*a + b*b <= r*r;
+        return a * a + b * b <= r * r;
     }
 
     public void move(int dx, int dy) {
@@ -62,6 +62,6 @@ public class UINode {
 
     @Override
     public String toString() {
-        return "n" + name;
+        return "UINode{" + name + "}";
     }
 }
