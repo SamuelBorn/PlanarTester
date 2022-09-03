@@ -3,8 +3,8 @@ package GraphComponents;
 import java.awt.*;
 
 public class UIEdge {
-    private UINode UINodeA;
-    private UINode UINodeB;
+    private final UINode UINodeA;
+    private final UINode UINodeB;
     private Color color = Color.BLACK;
 
     public UIEdge(UINode UINodeA, UINode UINodeB) {

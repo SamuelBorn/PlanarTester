@@ -5,17 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UIGraph {
-    private List<UINode> UINodes;
-    private List<UIEdge> edges;
+    private final List<UINode> UINodes;
+    private final List<UIEdge> edges;
 
     public UIGraph() {
         this.UINodes = new ArrayList<>();
         this.edges = new ArrayList<>();
-    }
-
-    public UIGraph(List<UINode> UINodes, List<UIEdge> edges) {
-        this.UINodes = UINodes;
-        this.edges = edges;
     }
 
     public List<UINode> getNodes() {
@@ -48,7 +43,7 @@ public class UIGraph {
     }
 
     public boolean isEdge(UINode UINodeA, UINode UINodeB){
-        return edges.stream().filter(edge -> edge.hasEndpoint(UINodeA) && edge.hasEndpoint(UINodeB)).findAny().isPresent();
+        return edges.stream().anyMatch(edge -> edge.hasEndpoint(UINodeA) && edge.hasEndpoint(UINodeB));
     }
 
     public List<UINode> getAdjacentNodes(UINode n) {

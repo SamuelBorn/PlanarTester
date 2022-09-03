@@ -4,7 +4,6 @@ import GraphComponents.UIEdge;
 import GraphComponents.UIGraph;
 import GraphComponents.UINode;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
@@ -53,12 +52,9 @@ public class ExampleGraphCreator {
             g.addNode(node);
         }
 
-        for (UINode node1 : nodes) {
-            for (UINode node2 : nodes) {
-                if (node1 == node2) {
-                    continue;
-                }
-                g.addEdge(new UIEdge(node1, node2));
+        for (int i = 0; i < nodes.size(); i++) {
+            for (int j = i + 1; j < nodes.size(); j++) {
+                g.addEdge(new UIEdge(nodes.get(i), nodes.get(j)));
             }
         }
 
@@ -82,12 +78,9 @@ public class ExampleGraphCreator {
             g.addNode(node);
         }
 
-        for (UINode node1 : nodes) {
-            for (UINode node2 : nodes) {
-                if (node1 == node2) {
-                    continue;
-                }
-                g.addEdge(new UIEdge(node1, node2));
+        for (int i = 0; i < nodes.size(); i++) {
+            for (int j = i + 1; j < nodes.size(); j++) {
+                g.addEdge(new UIEdge(nodes.get(i), nodes.get(j)));
             }
         }
 
@@ -106,7 +99,7 @@ public class ExampleGraphCreator {
                 new UINode(300, 200),
                 new UINode(300, 300));
 
-        Stream.concat(left.stream(), right.stream()).forEach(n -> g.addNode(n));
+        Stream.concat(left.stream(), right.stream()).forEach(g::addNode);
 
         for (UINode a : left) {
             for (UINode b : right) {
