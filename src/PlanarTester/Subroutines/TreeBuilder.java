@@ -23,7 +23,12 @@ public class TreeBuilder {
             tree.addNode(tn);
             map.put(UINode, tn);
         }
-        DFS(g, map, discovered, g.getNodes().get(0));
+        for (UINode node : g.getNodes()) {
+            if (discovered.contains(node)) {
+                continue;
+            }
+            DFS(g, map, discovered, node);
+        }
         tree.setMapping(map, g);
         return tree;
     }
