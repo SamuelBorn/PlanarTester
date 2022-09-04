@@ -1,7 +1,7 @@
 # PlanarTester
 
-PlanarTester ist ein Tool, dass es dem Nutzer erlaubt über ein GUI
-einen Graphen zu erstellen und anschließend zu testen ob dieser planar ist.
+PlanarTester is a tool that allows the user to create a graph via a GUI
+to create a graph and then test if it is planar.
 
 # Download and Installation
 
@@ -9,26 +9,22 @@ einen Graphen zu erstellen und anschließend zu testen ob dieser planar ist.
 
 * java-17-openjdk
 
+Download the latest release (.jar file) from this project.
 
+Execute the file with `java -jar PlanarTester.jar`.
 
-Laden Sie sich den letzten release (.jar Datei) aus diesem Projekt herunter.
+# Usage notes
 
-Führen Sie die Datei mit `java -jar PlanarTester.jar` aus.
-
-# Nutzungshinweise
-
-| Was?                  | Wie?                                              |
-| --------------------- | ------------------------------------------------- |
-| Node hinzufügen       | Linksklick auf freie Stelle                       |
-| Edge hinzufügen       | Linksclick auf Node 1 → Linksclick auf Node 2     |
-| Node löschen          | Über Node hovern und `x` auf der Tastatur drücken |
-| Edge löschen          | Über Edge hovern und `x` auf der Tastatur drücken |
-| Sichtfeld bewegen     | Rechtsclick halten und bewegen                    |
-| Node verschieben      | Rechtsclick auf Node, halten und bewegen          |
-| Auf Planarität testen | MenuBar → Check for planarity                     |
-| Beispiel Laden        | MenuBar → Load Examples                           |
-| Neuer Graph           | MenuBar → Load Examples → Load new empty graph    |
+| What?               | How?                                           |
+|---------------------|------------------------------------------------|
+| Add Node            | Left click on free space                       |
+| Add Edge            | Left click on Node 1 → Left click on Node 2    |
+| Delete Node         | Hover over Node and press 'x' on keyboard      |
+| Delete Edge         | Hover over Edge and press `x` on the keyboard  |
+| Move field of view  | Hold right click and move                      |
+| Move Node           | Right click on Node, hold and move             |
+| Check for planarity | MenuBar → Check for planarity                  |
+| Load Example        | MenuBar → Load Examples                        |
+| New graph           | MenuBar → Load Examples → Load new empty graph |
 
 <img src="https://github.com/SamuelBorn/PlanarTester/blob/master/media/usage.gif" width="100%" />
-
-"
