@@ -29,4 +29,6 @@ Führen Sie die Datei mit `java -jar PlanarTester.jar` aus.
 | Beispiel Laden        | MenuBar → Load Examples                           |
 | Neuer Graph           | MenuBar → Load Examples → Load new empty graph    |
 
+<img src="https://github.com/SamuelBorn/PlanarTester/blob/master/media/usage.gif" width="100%" />
 
+"
