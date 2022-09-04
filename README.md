@@ -19,7 +19,7 @@ Execute the file with `java -jar PlanarTester.jar`.
 |---------------------|------------------------------------------------|
 | Add Node            | Left click on free space                       |
 | Add Edge            | Left click on Node 1 → Left click on Node 2    |
-| Delete Node         | Hover over Node and press 'x' on keyboard      |
+| Delete Node         | Hover over Node and press `x` on keyboard      |
 | Delete Edge         | Hover over Edge and press `x` on the keyboard  |
 | Move field of view  | Hold right click and move                      |
 | Move Node           | Right click on Node, hold and move             |
