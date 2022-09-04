@@ -25,6 +25,8 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
     private JMenuItem loadK33 = new JMenuItem("Load K³³");
 
     private JMenuItem loadExample1 = new JMenuItem("Load example 1");
+    private JMenuItem loadExample2 = new JMenuItem("Load example 2");
+
     private JMenuItem testPlanar = new JMenuItem("Check for planarity");
 
     public GraphMenuBar(GraphPanel panel) {
@@ -35,6 +37,7 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
         graphMenu.add(loadK4);
         graphMenu.add(loadK33);
         graphMenu.add(loadExample1);
+        graphMenu.add(loadExample2);
         this.add(graphMenu);
 
         loadEmpty.addActionListener(this);
@@ -42,6 +45,7 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
         loadK4.addActionListener(this);
         loadK33.addActionListener(this);
         loadExample1.addActionListener(this);
+        loadExample2.addActionListener(this);
 
         this.add(testPlanar);
         testPlanar.addActionListener(this);
@@ -57,8 +61,18 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
             panel.repaint();
         }
         if (e.getSource().equals(loadK5)) {
-            panel.setGraph(ExampleGraphCreator.getK5());
-            panel.repaint();
+            for (UINode node : panel.getGraph().getNodes()) {
+                System.out.println("new Node("+node.getX()+","+node.getY()+"),");
+            }
+            System.out.println();
+            for (UIEdge edge : panel.getGraph().getEdges()) {
+                int a = panel.getGraph().getNodes().indexOf(edge.getNodeA());
+                int b = panel.getGraph().getNodes().indexOf(edge.getNodeB());
+
+                System.out.println("new Edge(nodes.get("+a+"),nodes.get("+b+")),");
+            }
+//            panel.setGraph(ExampleGraphCreator.getK5());
+//            panel.repaint();
         }
         if (e.getSource().equals(loadK4)) {
             panel.setGraph(ExampleGraphCreator.getK4());
@@ -70,6 +84,10 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
         }
         if (e.getSource().equals(loadExample1)) {
             panel.setGraph(ExampleGraphCreator.getExampleGraph1());
+            panel.repaint();
+        }
+        if (e.getSource().equals(loadExample2)) {
+            panel.setGraph(ExampleGraphCreator.getExampleGraph2());
             panel.repaint();
         }
         if (e.getSource().equals(testPlanar)) {

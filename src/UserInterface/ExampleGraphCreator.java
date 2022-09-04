@@ -108,4 +108,52 @@ public class ExampleGraphCreator {
         }
         return g;
     }
+
+    public static UIGraph getExampleGraph2() {
+        List<UINode> nodes = Arrays.asList(
+                new UINode(372, 489),
+                new UINode(367, 357),
+                new UINode(437, 298),
+                new UINode(439, 219),
+                new UINode(350, 150),
+                new UINode(272, 259),
+                new UINode(483, 116),
+                new UINode(397, 78),
+                new UINode(257, 46),
+                new UINode(249, 135),
+                new UINode(81, 134),
+                new UINode(530, 32),
+                new UINode(725, 140),
+                new UINode(596, 174)
+        );
+
+        List<UIEdge> edges = Arrays.asList(
+                new UIEdge(nodes.get(1), nodes.get(0)),
+                new UIEdge(nodes.get(2), nodes.get(1)),
+                new UIEdge(nodes.get(3), nodes.get(2)),
+                new UIEdge(nodes.get(4), nodes.get(3)),
+                new UIEdge(nodes.get(5), nodes.get(4)),
+                new UIEdge(nodes.get(6), nodes.get(4)),
+                new UIEdge(nodes.get(7), nodes.get(4)),
+                new UIEdge(nodes.get(8), nodes.get(7)),
+                new UIEdge(nodes.get(9), nodes.get(8)),
+                new UIEdge(nodes.get(10), nodes.get(9)),
+                new UIEdge(nodes.get(11), nodes.get(7)),
+                new UIEdge(nodes.get(12), nodes.get(11)),
+                new UIEdge(nodes.get(13), nodes.get(12)),
+                new UIEdge(nodes.get(3), nodes.get(6)),
+                new UIEdge(nodes.get(2), nodes.get(13)),
+                new UIEdge(nodes.get(11), nodes.get(13)),
+                new UIEdge(nodes.get(0), nodes.get(12)),
+                new UIEdge(nodes.get(1), nodes.get(5)),
+                new UIEdge(nodes.get(4), nodes.get(9)),
+                new UIEdge(nodes.get(8), nodes.get(10)),
+                new UIEdge(nodes.get(0), nodes.get(10))
+        );
+
+        UIGraph g = new UIGraph();
+        nodes.forEach(g::addNode);
+        edges.forEach(g::addEdge);
+        return g;
+    }
 }
