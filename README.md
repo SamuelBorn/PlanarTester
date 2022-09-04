@@ -7,7 +7,8 @@ and then test if it is planar.
 
 **Requirements:**
 
-* java-17-openjdk
+* java-17-openjdk (rpm)
+* openjdk-17-jdk (deb)
 
 Download the latest release (.jar file) from this project.
 
