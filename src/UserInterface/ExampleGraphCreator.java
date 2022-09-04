@@ -111,7 +111,7 @@ public class ExampleGraphCreator {
 
     public static UIGraph getExampleGraph2() {
         List<UINode> nodes = Arrays.asList(
-                new UINode(372, 489),
+                new UINode(372, 450),
                 new UINode(367, 357),
                 new UINode(437, 298),
                 new UINode(439, 219),
