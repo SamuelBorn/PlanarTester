@@ -61,18 +61,8 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
             panel.repaint();
         }
         if (e.getSource().equals(loadK5)) {
-            for (UINode node : panel.getGraph().getNodes()) {
-                System.out.println("new Node("+node.getX()+","+node.getY()+"),");
-            }
-            System.out.println();
-            for (UIEdge edge : panel.getGraph().getEdges()) {
-                int a = panel.getGraph().getNodes().indexOf(edge.getNodeA());
-                int b = panel.getGraph().getNodes().indexOf(edge.getNodeB());
-
-                System.out.println("new Edge(nodes.get("+a+"),nodes.get("+b+")),");
-            }
-//            panel.setGraph(ExampleGraphCreator.getK5());
-//            panel.repaint();
+            panel.setGraph(ExampleGraphCreator.getK5());
+            panel.repaint();
         }
         if (e.getSource().equals(loadK4)) {
             panel.setGraph(ExampleGraphCreator.getK4());
@@ -83,11 +73,11 @@ public class GraphMenuBar extends JMenuBar implements ActionListener {
             panel.repaint();
         }
         if (e.getSource().equals(loadExample1)) {
-            panel.setGraph(ExampleGraphCreator.getExampleGraph1());
+            panel.setGraph(ExampleGraphCreator.getExampleGraph2());
             panel.repaint();
         }
         if (e.getSource().equals(loadExample2)) {
-            panel.setGraph(ExampleGraphCreator.getExampleGraph2());
+            panel.setGraph(ExampleGraphCreator.getExampleGraph1());
             panel.repaint();
         }
         if (e.getSource().equals(testPlanar)) {

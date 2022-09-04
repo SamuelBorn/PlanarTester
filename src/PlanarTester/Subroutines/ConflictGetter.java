@@ -22,15 +22,11 @@ public class ConflictGetter {
                 for (int j = i + 1; j < node.getEdges().size(); j++) {
                     Edge e1 = node.getEdges().get(i);
                     Edge e2 = node.getEdges().get(j);
-                    System.out.println("Fork(" + e1 + " " + e2 + ")");
 
                     List<Edge> r_e1_e2 = getRSet(e1, e2, lowPoints);
                     List<Edge> r_e2_e1 = getRSet(e2, e1, lowPoints);
-                    System.out.println("r_e1_e2 " + r_e1_e2);
-                    System.out.println("r_e2_e1 " + r_e2_e1);
+
                     conflicts.addAll(getConflictsForFork(r_e1_e2, r_e2_e1, edgeList));
-                    System.out.println(getConflictsForFork(r_e1_e2, r_e2_e1, edgeList));
-                    System.out.println();
                 }
             }
         }
