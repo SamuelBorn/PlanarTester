@@ -4,6 +4,7 @@ import PlanarTester.Conflict;
 import PlanarTester.Edge;
 import PlanarTester.Tree;
 import PlanarTester.TreeNode;
+import UserInterface.ExampleGraphCreator;
 import Util.Tuple;
 
 import java.util.ArrayList;
@@ -21,10 +22,15 @@ public class ConflictGetter {
                 for (int j = i + 1; j < node.getEdges().size(); j++) {
                     Edge e1 = node.getEdges().get(i);
                     Edge e2 = node.getEdges().get(j);
+                    System.out.println("Fork(" + e1 + " " + e2 + ")");
 
                     List<Edge> r_e1_e2 = getRSet(e1, e2, lowPoints);
                     List<Edge> r_e2_e1 = getRSet(e2, e1, lowPoints);
+                    System.out.println("r_e1_e2 " + r_e1_e2);
+                    System.out.println("r_e2_e1 " + r_e2_e1);
                     conflicts.addAll(getConflictsForFork(r_e1_e2, r_e2_e1, edgeList));
+                    System.out.println(getConflictsForFork(r_e1_e2, r_e2_e1, edgeList));
+                    System.out.println();
                 }
             }
         }
@@ -35,6 +41,7 @@ public class ConflictGetter {
         List<Conflict> conflicts = new ArrayList<>();
         for (Edge f1 : edgeList) {
             for (Edge f2 : edgeList) {
+                if (f1 == f2) continue;
                 if ((r_e1_e2.contains(f1) && r_e1_e2.contains(f2)) || (r_e2_e1.contains(f1) && r_e2_e1.contains(f2))) {
                     conflicts.add(new Conflict(f1, f2, Conflict.ConflictType.EQUALITY));
                 }
@@ -56,5 +63,28 @@ public class ConflictGetter {
                 .filter(edge -> lowPoints.get(e2) < lowPoints.get(edge))
                 .filter(edge -> lowPoints.get(edge) < forkNode.getDFSNumber())
                 .toList();
+    }
+
+    public static void main(String[] args) {
+        Tree t = TreeBuilder.buildTree(ExampleGraphCreator.getK4());
+        System.out.println(t);
+
+        System.out.println(t.getEdgeList());
+        System.out.println();
+
+        for (Edge edge : t.getEdgeList()) {
+            System.out.println(edge + " → " + edge.getBackEdges());
+        }
+        System.out.println();
+
+        for (Map.Entry<Edge, Integer> edgeIntegerEntry : LowPointGetter.getLowPoints(t.getEdgeList()).entrySet()) {
+            System.out.println(edgeIntegerEntry);
+        }
+        System.out.println();
+
+        for (Conflict conflict : ConflictGetter.getConflicts(t, LowPointGetter.getLowPoints(t.getEdgeList()))) {
+            System.out.println(conflict);
+        }
+        System.out.println();
     }
 }

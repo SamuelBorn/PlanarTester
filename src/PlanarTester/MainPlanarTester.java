@@ -22,6 +22,7 @@ public class MainPlanarTester {
         List<Conflict> inequalityConflicts = conflicts.stream().filter(c -> c.getType() == Conflict.ConflictType.INEQUALITY).toList();
 
         System.out.println(t);
+        System.out.println(conflicts);
 
         Map<Edge, List<Edge>> edgeComponentMap = EqualityConflictMerger.getEdgeComponentMap(t.getEdgeList(), equalityConflicts);
         List<Tuple<List<Edge>, List<Edge>>> mergedGraph = EqualityConflictMerger.getMergedGraph(edgeComponentMap, inequalityConflicts);

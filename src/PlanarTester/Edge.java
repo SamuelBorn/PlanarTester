@@ -1,6 +1,7 @@
 package PlanarTester;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Edge {
@@ -27,6 +28,8 @@ public class Edge {
     }
 
     public List<Edge> getBackEdges() {
+        if (!isTreeEdge()) return Arrays.asList(this);
+
         List<Edge> backEdges = new ArrayList<>(getNodeB().getNonTreeEdges());
         for (Edge edge : getNodeB().getTreeEdges()) {
             backEdges.addAll(edge.getBackEdges());
