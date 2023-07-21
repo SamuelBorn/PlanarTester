@@ -1,7 +1,6 @@
 # PlanarTester
 
-PlanarTester is a tool that allows the user to create a graph via a GUI
-and then test if it is planar.
+PlanarTester is a GUI-based tool designed to enable users to create graphs and assess their planarity.
 
 # Download and Installation
 
@@ -14,7 +13,7 @@ Download the latest release (.jar file) from this project.
 
 Execute the file with `java -jar PlanarTester.jar`.
 
-# Usage notes
+# Usage
 
 | What?               | How?                                           |
 |---------------------|------------------------------------------------|
